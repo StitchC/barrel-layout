@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo2</title>
+</head>
+<body>
+	<div class="container">
+		<div class="gallary-item-inner"><img src="images/1.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/2.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/3.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/4.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/5.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/6.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/7.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/8.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/9.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/10.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/11.jpg" alt=""></div>
+		<div class="gallary-item-inner"><img src="images/12.jpg" alt=""></div>
+	</div>
+	
+	<div class="add">+12</div>
+	<link rel="stylesheet" type="text/css" href="css/normal.css">
+	<link rel="stylesheet" type="text/css" href="css/demo2.css">
+	<script type="text/javascript" src="js/demo2.js"></script>
+	<script type="text/javascript">
+		var container = document.querySelectorAll('.container')[0],
+			items = document.querySelectorAll('.gallary-item-inner img'),
+			addBtn = document.querySelectorAll('.add')[0],
+			barrel = null;
+
+		window.addEventListener('load', function() {
+			barrel = new BarrelLayout(container, items, 150);
+		});
+
+		addBtn.addEventListener('click', function() {
+			
+			var frag = document.createDocumentFragment();
+			for (var i = 0; i < 20; i++) {
+				var num = Math.floor(Math.random() * 12 + 1),
+					path = 'images/' + num + '.jpg';
+				var div = document.createElement('div'),
+					img = document.createElement('img');
+
+				img.src = path;
+				div.appendChild(img);
+				div.className = 'gallary-item-inner';
+				frag.appendChild(div);
+			}
+			container.appendChild(frag);
+			barrel.refresh(document.querySelectorAll('.gallary-item-inner img'));
+			
+		});
+	</script>
+</body>
+</html>
